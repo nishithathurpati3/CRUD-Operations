@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -25,5 +26,19 @@ public class StudentController {
     @GetMapping("/students")
     public List<Student> getAllStudents(Student student) {
         return service.getAllStudents();
+    }
+
+    //GET RECORDS BY ID
+    @GetMapping("/studentById/{id}")
+    public Optional<Student> getStudentById(@PathVariable int id){
+        return service.getStudentById(id);
+    }
+    @GetMapping("/students/{age}")
+    public Student getStudentByAge(@RequestParam(name="age") int age){
+        return service.getStudentByAge(age);
+    }
+    @GetMapping("/students/{studentName}")
+    public Student getStudentByName(@RequestParam(name="studentName") String name){
+        return service.getStudentByName(name);
     }
 }
