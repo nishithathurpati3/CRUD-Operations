@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
 @Service
 public class StudentService {
     @Autowired
@@ -30,4 +29,15 @@ public class StudentService {
         return studentRepo.findByName(name);
     }
 
+    public Student updateStudentByID(int id, Student studentTobeUpdated) {
+        if(studentRepo.existsById(id)){
+            studentTobeUpdated.setId(id);
+            return studentRepo.save(studentTobeUpdated);
+        }
+        else return null;
+    }
+    public String deleteAllStudents(){
+        studentRepo.deleteAll();
+        return "Student records delete !!";
+    }
 }

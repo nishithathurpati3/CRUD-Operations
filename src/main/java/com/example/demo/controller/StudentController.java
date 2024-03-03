@@ -41,4 +41,12 @@ public class StudentController {
     public Student getStudentByName(@RequestParam(name="studentName") String name){
         return service.getStudentByName(name);
     }
+    @PutMapping("/editStudents/{id}")
+    public Student updateStudent(@PathVariable int id,@RequestBody Student studentTobeUpdated){
+        return service.updateStudentByID(id, studentTobeUpdated);
+    }
+    @DeleteMapping("/students")
+    public String deleteAllStudents(){
+        return service.deleteAllStudents();
+    }
 }
